@@ -1,6 +1,5 @@
-CREATE TABLE IF NOT EXISTS `user` (
-
-    `user_id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `password` varchar(20) NOT NULL,
-    `role` varchar(10)
+CREATE TABLE IF NOT EXISTS users (
+ user_id INT NOT NULL PRIMARY KEY,
+ password VARCHAR NOT NULL,
+ role VARCHAR NOT NULL
 );

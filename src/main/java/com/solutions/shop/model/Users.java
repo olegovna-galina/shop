@@ -6,8 +6,8 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "user", schema = "public")
-public class User {
+@Table(name = "users")
+public class Users {
     @Id
     @Column(name = "user_id")
     Integer userId;

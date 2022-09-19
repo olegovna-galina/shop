@@ -1,6 +1,6 @@
 package com.solutions.shop.service;
 
-import com.solutions.shop.model.User;
+import com.solutions.shop.model.Users;
 
 import com.solutions.shop.repository.IUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ public class UserService {
     @Autowired
     private IUserRepository iUserRepository;
 
-    public User createUser(User user){
+    public Users createUser(Users user){
         if (user.getId() != null){
             return iUserRepository.save(user);
         }
