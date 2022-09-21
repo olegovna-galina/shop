@@ -3,6 +3,7 @@ package com.solutions.shop.model;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Data
 @Entity
@@ -10,9 +11,11 @@ import javax.persistence.*;
 public class Users {
     @Id
     @Column(name = "user_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     Integer userId;
 
     @Column(name = "password")
+    @NotBlank
     String password;
 
     @Column(name = "role")
