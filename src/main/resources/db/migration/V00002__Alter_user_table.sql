@@ -1,0 +1,7 @@
+DROP TABLE users;
+
+CREATE TABLE IF NOT EXISTS users (
+  log_in VARCHAR NOT NULL PRIMARY KEY,
+  password VARCHAR NOT NULL
+);
+
