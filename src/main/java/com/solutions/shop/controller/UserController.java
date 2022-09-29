@@ -1,6 +1,6 @@
 package com.solutions.shop.controller;
 
-import com.solutions.shop.model.Users;
+import com.solutions.shop.model.User;
 import com.solutions.shop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,7 +17,7 @@ public class UserController {
     private UserService userService;
 
     @PostMapping
-    public ResponseEntity<?> create(@RequestBody Users user) {
+    public ResponseEntity<?> create(@RequestBody User user) {
         userService.createUser(user);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

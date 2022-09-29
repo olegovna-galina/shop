@@ -11,18 +11,18 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "users")
-public class Users {
+public class User {
     @Id
     @Column(name = "user_id")
-    Integer userId;
+    private Integer userId;
 
     @Column(name = "login")
     @NotBlank
-    String login;
+    private String login;
 
     @Column(name = "password")
     @NotBlank
-    String password;
+    private String password;
 
     public Integer getId() {
         return userId;
