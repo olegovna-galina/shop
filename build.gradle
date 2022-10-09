@@ -22,7 +22,7 @@ dependencies {
 	implementation 'org.flywaydb:flyway-core'
 
 	// SwaggerUI ( http://localhost:8090/swagger-ui.html )
-	implementation 'org.springdoc:springdoc-openapi-ui:1.6.8'
+	implementation 'org.springdoc:springdoc-openapi-ui:1.6.11'
 
 	// PostgresSQL driver
 	runtimeOnly 'org.postgresql:postgresql'
@@ -34,7 +34,16 @@ dependencies {
 	// Lombok testing
 	testAnnotationProcessor 'org.projectlombok:lombok'
 	testCompileOnly 'org.projectlombok:lombok'
+
+	// Spring Boot testing
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+	// JUnit
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.0'
+
+	// Mockito
+	testCompileOnly 'org.mockito:mockito-core:4.8.0'
 }
 
 tasks.named('test') {
