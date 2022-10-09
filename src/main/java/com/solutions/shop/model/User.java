@@ -24,6 +24,15 @@ public class User {
     @NotBlank
     private String password;
 
+    public User() {
+    }
+
+    public User(Integer userId, String login, String password) {
+        this.userId = userId;
+        this.login = login;
+        this.password = password;
+    }
+
     public Integer getId() {
         return userId;
     }
