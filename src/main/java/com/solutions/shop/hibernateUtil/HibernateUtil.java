@@ -12,7 +12,8 @@ public class HibernateUtil {
                 .build();
 
         SessionFactory factory = new MetadataSources(registry)
-                .buildMetadata().buildSessionFactory();
+                .buildMetadata()
+                .buildSessionFactory();
 
         return factory;
     }

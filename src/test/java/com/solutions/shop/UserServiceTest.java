@@ -21,7 +21,6 @@ public class UserServiceTest {
 
     @Test
     public void createUser_success() throws Exception {
-
         User record = new User();
         record.setUserId(1);
         record.setLogin("TestLogin");

@@ -21,5 +21,5 @@ public class ShoppingCart {
     private Integer customerId;
 
     @Column(name = "confirmed_y_n")
-    private Boolean confirmedYN;
+    private Boolean confirmed;
 }

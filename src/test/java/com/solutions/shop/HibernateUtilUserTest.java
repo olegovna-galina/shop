@@ -46,6 +46,6 @@ public class HibernateUtilUserTest {
     @AfterEach
     public void closeSession() {
         if (session != null) session.close();
-        System.out.println("Session closed\n");
+        System.out.println("Session closed");
     }
 }
