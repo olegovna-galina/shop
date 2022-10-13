@@ -6,6 +6,8 @@ import com.solutions.shop.model.User;
 import org.hibernate.*;
 import org.junit.jupiter.api.*;
 
+import org.springframework.security.test.context.support.WithMockUser;
+
 public class HibernateUtilUserTest {
 
     private static SessionFactory sessionFactory;
@@ -24,6 +26,7 @@ public class HibernateUtilUserTest {
     }
 
     @Test
+    @WithMockUser(username = "mock_user", password = "mock_psw") // see test application.properties
     public void testCreate() {
         System.out.println("Running testCreate...");
 
@@ -35,6 +38,23 @@ public class HibernateUtilUserTest {
         session.getTransaction().commit();
 
         Assertions.assertTrue(id > 0);
+    }
+
+    @Test
+    @WithMockUser(username = "mock_user", password = "mock_psw")
+    public void testDelete() {
+        System.out.println("Running testDelete...");
+
+        Integer id = 99;
+        User user = session.find(User.class, id);
+
+        session.beginTransaction();
+        session.delete(user);
+        session.getTransaction().commit();
+
+        User deletedUser = session.find(User.class, id);
+
+        Assertions.assertNull(deletedUser);
     }
 
     @BeforeEach

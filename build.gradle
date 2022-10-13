@@ -37,6 +37,7 @@ dependencies {
 
 	// Spring Boot testing
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
 
 	// JUnit
 	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.0'
@@ -44,6 +45,9 @@ dependencies {
 
 	// Mockito
 	testCompileOnly 'org.mockito:mockito-core:4.8.0'
+
+	// Memory DB
+	testRuntimeOnly 'com.h2database:h2'
 }
 
 tasks.named('test') {
