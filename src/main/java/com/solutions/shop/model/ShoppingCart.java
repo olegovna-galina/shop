@@ -20,6 +20,6 @@ public class ShoppingCart {
     @NotNull
     private Integer customerId;
 
-    @Column(name = "confirmed_y_n")
+    @Column(name = "confirmed")
     private Boolean confirmed;
 }
