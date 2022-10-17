@@ -7,13 +7,22 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.CascadeType;
+import javax.persistence.JoinColumn;
+import javax.persistence.MapsId;
 
 @Data
 @Entity
 @Table(name = "customer")
 public class Customer {
-    @Id
-    @Column(name = "customer_id")
+    //@Id
+    // @Column(name = "customer_id")
+    @MapsId
+    @OneToOne (optional=false, mappedBy="user_id")
+    @ManyToOne (optional=false, cascade=CascadeType.ALL)
+    @JoinColumn (name="customer_id")
     private Integer customerId;
 
     @Column(name = "first_name")

@@ -7,19 +7,36 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import javax.persistence.OneToMany;
+import javax.persistence.FetchType;
+import java.util.Collection;
+import javax.persistence.ManyToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
+import java.util.List;
 
 @Data
 @Entity
 @Table(name = "shopping_cart")
 public class ShoppingCart {
     @Id
-    @Column(name = "order_id")
+    // @Column(name = "order_id")
     private Integer orderId;
 
+    /*
     @Column(name = "customer_id")
     @NotNull
-    private Integer customerId;
+    */
+    @OneToMany (mappedBy="customer_id", fetch=FetchType.EAGER)
+    // private Integer customerId;
+    private Collection<Customer> customers;
 
     @Column(name = "confirmed")
     private Boolean confirmed;
+
+    @ManyToMany
+    @JoinTable (name="order_product",
+            joinColumns=@JoinColumn (name="order_id"),
+            inverseJoinColumns=@JoinColumn(name="product_id"))
+    private List<Product> products;
 }
