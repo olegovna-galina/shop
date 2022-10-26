@@ -17,23 +17,28 @@ import javax.persistence.MapsId;
 @Entity
 @Table(name = "customer")
 public class Customer {
-    //@Id
-    // @Column(name = "customer_id")
-    @MapsId
-    @OneToOne (optional=false, mappedBy="user_id")
-    @ManyToOne (optional=false, cascade=CascadeType.ALL)
-    @JoinColumn (name="customer_id")
+    @Id
+    @Column(name = "customer_id")
     private Integer customerId;
 
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "customer_id")
+    private User user;
+
     @Column(name = "first_name")
-    @NotBlank
+    //@NotBlank
     private String firstName;
 
     @Column(name = "last_name")
-    @NotBlank
+    //@NotBlank
     private String lastName;
 
     @Column(name = "address")
-    @NotBlank
+    //@NotBlank
     private String address;
+
+    public Customer(Integer customerId) {
+        this.customerId = customerId;
+    }
 }

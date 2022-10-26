@@ -8,6 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.persistence.OneToOne;
 import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 import lombok.Data;
 
@@ -16,10 +17,12 @@ import lombok.Data;
 @Table(name = "users")
 public class User {
     @Id
-    // @Column(name = "user_id")
-    @OneToOne (optional=false, cascade=CascadeType.ALL)
-    @JoinColumn (name="user_id")
+    @Column(name = "user_id")
     private Integer userId;
+
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
+    private Customer customer;
 
     @Column(name = "login")
     @NotBlank
@@ -32,10 +35,11 @@ public class User {
     public User() {
     }
 
-    public User(Integer userId, String login, String password) {
+    public User(Integer userId, String login, String password, Customer customer) {
         this.userId = userId;
         this.login = login;
         this.password = password;
+        this.customer = customer;
     }
 
     public Integer getId() {

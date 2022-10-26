@@ -13,7 +13,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "product")
 public class Product {
     @Id
-    // @Column(name = "product_id")
+    @Column(name = "product_id")
     private Integer productId;
 
     @Column(name = "name")
@@ -35,10 +35,4 @@ public class Product {
     @Column(name = "category")
     @NotBlank
     private String category;
-
-    @ManyToMany
-    @JoinTable (name="order_product",
-            joinColumns=@JoinColumn (name="product_id"),
-            inverseJoinColumns=@JoinColumn(name="order_id"))
-    private List<ShoppingCart> orders;
 }
