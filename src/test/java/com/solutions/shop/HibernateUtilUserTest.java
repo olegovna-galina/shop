@@ -2,7 +2,6 @@ package com.solutions.shop;
 
 import com.solutions.shop.hibernateUtil.HibernateUtil;
 import com.solutions.shop.model.User;
-import com.solutions.shop.model.Customer;
 
 import org.hibernate.*;
 import org.junit.jupiter.api.*;
@@ -34,10 +33,7 @@ public class HibernateUtilUserTest {
         session.beginTransaction();
 
         Integer userId = 99;
-        Integer customerId = userId;
-
-        Customer cs = new Customer(customerId);
-        User user = new User(userId,"test-logon", "test-passw", cs);
+        User user = new User(userId,"test-logon", "test-passw");
 
         Integer id = (Integer) session.save(user);
         session.getTransaction().commit();
