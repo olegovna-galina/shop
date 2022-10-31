@@ -2,7 +2,6 @@ package com.solutions.shop.model;
 
 import lombok.Data;
 import java.math.BigDecimal;
-import java.util.List;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -35,4 +34,8 @@ public class Product {
     @Column(name = "category")
     @NotBlank
     private String category;
+
+    /* Implementing With a Join Table in JPA */
+    @OneToOne(mappedBy = "product")
+    private ShoppingCart shoppingCart;
 }

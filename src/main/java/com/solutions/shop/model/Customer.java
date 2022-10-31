@@ -18,7 +18,7 @@ public class Customer {
     @Column(name = "customer_id")
     private Integer customerId;
 
-    // The customer_id column is the foreign key to user_id
+    /* The customer_id column is the foreign key to user_id */
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id", referencedColumnName = "user_id")
     private User user;

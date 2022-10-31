@@ -2,18 +2,8 @@ package com.solutions.shop.model;
 
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import javax.persistence.OneToMany;
-import javax.persistence.FetchType;
-import java.util.Collection;
-import javax.persistence.ManyToMany;
-import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
-import java.util.List;
 
 @Data
 @Entity
@@ -25,9 +15,22 @@ public class ShoppingCart {
 
     @Column(name = "customer_id")
     @NotNull
-    @OneToMany (mappedBy="customer_id", fetch=FetchType.EAGER)
     private Integer customerId;
 
     @Column(name = "confirmed")
     private Boolean confirmed;
+
+    /* The customer_id column is the foreign key to customer.customer_id */
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id", referencedColumnName = "customer_id", insertable=false, updatable=false)
+    private Customer customer;
+
+    /* Implementing With a Join Table in JPA */
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinTable(name = "order_product",
+            joinColumns =
+                    { @JoinColumn(name = "order_id", referencedColumnName = "order_id") },
+            inverseJoinColumns =
+                    { @JoinColumn(name = "product_id", referencedColumnName = "product_id") })
+    private Product product;
 }
