@@ -1,6 +1,5 @@
-package com.solutions.shop;
+package com.solutions.shop.service;
 
-import com.solutions.shop.service.UserService;
 import com.solutions.shop.model.User;
 import com.solutions.shop.repository.IUserRepository;
 import org.junit.jupiter.api.Test;

@@ -1,4 +1,4 @@
-package com.solutions.shop;
+package com.solutions.shop.repository;
 
 import com.solutions.shop.hibernateUtil.HibernateUtil;
 import com.solutions.shop.model.User;

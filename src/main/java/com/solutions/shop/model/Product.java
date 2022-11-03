@@ -35,6 +35,15 @@ public class Product {
     @NotBlank
     private String category;
 
+    public Product(Integer productId, String name, String description, BigDecimal price, String brand, String category) {
+        this.productId = productId;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+        this.brand = brand;
+        this.category = category;
+    }
+
     /* Implementing With a Join Table in JPA */
     @OneToOne(mappedBy = "product")
     private ShoppingCart shoppingCart;

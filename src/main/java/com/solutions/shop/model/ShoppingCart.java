@@ -20,6 +20,13 @@ public class ShoppingCart {
     @Column(name = "confirmed")
     private Boolean confirmed;
 
+    public ShoppingCart(Integer orderId, Integer customerId, Boolean confirmed, Product product) {
+        this.orderId = orderId;
+        this.customerId = customerId;
+        this.confirmed = confirmed;
+        this.product = product;
+    }
+
     /* The customer_id column is the foreign key to customer.customer_id */
     @ManyToOne(optional = false, cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id", referencedColumnName = "customer_id", insertable=false, updatable=false)

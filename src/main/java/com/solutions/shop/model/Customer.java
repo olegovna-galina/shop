@@ -9,6 +9,7 @@ import javax.persistence.Table;
 import javax.persistence.OneToOne;
 import javax.persistence.CascadeType;
 import javax.persistence.JoinColumn;
+import javax.validation.constraints.NotBlank;
 
 @Data
 @Entity
@@ -24,15 +25,24 @@ public class Customer {
     private User user;
 
     @Column(name = "first_name")
+    @NotBlank
     private String firstName;
 
     @Column(name = "last_name")
+    @NotBlank
     private String lastName;
 
     @Column(name = "address")
+    @NotBlank
     private String address;
 
-    public Customer(Integer customerId) {
+    public Customer(){
+    }
+
+    public Customer(Integer customerId, String firstName, String lastName, String address) {
         this.customerId = customerId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.address = address;
     }
 }
