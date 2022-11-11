@@ -2,58 +2,56 @@ package com.solutions.shop.repository;
 
 import com.solutions.shop.model.Customer;
 import com.solutions.shop.model.User;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Assertions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 
 @DataJpaTest
-public class CustomerRepositoryTest {
+public class UserRepositoryTest {
     @Autowired
     private TestEntityManager entityManager;
 
-    /* New User and Customer for all Tests */
+    /* New User for all Tests */
     User user1 = new User(998,"test-logon", "test-passw");
-    Customer testCustomer1 = new Customer(998, user1,"Customer1",
-            "testLastName", "Polesskaya 8");
-
+    
     @Test
-    public void testCustomerCreate() {
+    public void testUserCreate() {
         entityManager.persist(user1);
-        entityManager.persist(testCustomer1);
         entityManager.flush();
+        System.out.println(user1);
     }
 
     @Test
-    public void testCustomerRead() {
+    public void testUserRead() {
         entityManager.persist(user1);
-        entityManager.persist(testCustomer1);
         entityManager.flush();
 
-        Customer result = entityManager.find(Customer.class, 998);
+        User result = entityManager.find(User.class, 998);
         Assertions.assertNotNull(result);
         System.out.println(result);
     }
 
     @Test
-    public void testCustomerUpdate() {
+    public void testUserUpdate() {
         entityManager.persist(user1);
-        entityManager.persist(testCustomer1);
         entityManager.flush();
 
-        testCustomer1.setFirstName("NewFirstName");
-        testCustomer1.setLastName("NewLastName");
-        testCustomer1.setAddress("Polesskaya 88");
-        System.out.println(testCustomer1);
+        user1.setPassword("newPassword");
+        System.out.println(user1);
     }
 
     @Test
-    public void testCustomerDelete() {
+    public void testUserDelete() {
+        Customer testCustomer1 = new Customer(998, user1,"Customer1",
+                "testLastName", "Polesskaya 8");
         entityManager.persist(user1);
         entityManager.persist(testCustomer1);
         entityManager.flush();
+        entityManager.clear(); // all previously managed entities are now detached
 
-        entityManager.remove(testCustomer1); // ?? I don't see Delete-Operation
+        User same = entityManager.find(User.class, 998);
+        entityManager.remove(same); // ?? I don't see Delete-Operation
     }
 }

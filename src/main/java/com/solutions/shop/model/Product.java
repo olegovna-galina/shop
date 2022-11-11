@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Data
 @Entity
@@ -45,6 +46,26 @@ public class Product {
     }
 
     /* Implementing With a Join Table in JPA */
-    @OneToOne(mappedBy = "product")
-    private ShoppingCart shoppingCart;
+    @ManyToMany(mappedBy = "products")
+    private Set<ShoppingCart> shoppingCarts;
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 }
