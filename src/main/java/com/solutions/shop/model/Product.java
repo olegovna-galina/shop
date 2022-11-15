@@ -1,6 +1,10 @@
 package com.solutions.shop.model;
 
 import lombok.Data;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 
 import javax.persistence.*;
@@ -11,61 +15,40 @@ import java.util.Set;
 @Data
 @Entity
 @Table(name = "product")
+@RequiredArgsConstructor
+@Setter
 public class Product {
     @Id
     @Column(name = "product_id")
+    @NonNull
     private Integer productId;
 
     @Column(name = "name")
     @NotBlank
+    @NonNull
     private String name;
 
     @Column(name = "description")
     @NotBlank
+    @NonNull
     private String description;
 
     @Column(name = "price")
     @NotNull
+    @NonNull
     private BigDecimal price;
 
     @Column(name = "brand")
     @NotBlank
+    @NonNull
     private String brand;
 
     @Column(name = "category")
     @NotBlank
+    @NonNull
     private String category;
-
-    public Product(Integer productId, String name, String description, BigDecimal price, String brand, String category) {
-        this.productId = productId;
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.brand = brand;
-        this.category = category;
-    }
 
     /* Implementing With a Join Table in JPA */
     @ManyToMany(mappedBy = "products")
     private Set<ShoppingCart> shoppingCarts;
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
 }

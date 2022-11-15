@@ -6,15 +6,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
-import lombok.Data;
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Data
 @Entity
 @Table(name = "users")
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
+@Setter
 public class User {
     @Id
     @Column(name = "user_id")
@@ -27,12 +27,4 @@ public class User {
     @Column(name = "password")
     @NotBlank
     private String password;
-
-    public Integer getId() {
-        return userId;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

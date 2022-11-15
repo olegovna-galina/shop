@@ -1,7 +1,7 @@
 package com.solutions.shop.service;
 
 import com.solutions.shop.model.User;
-import com.solutions.shop.repository.IUserRepository;
+import com.solutions.shop.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @WebMvcTest(UserService.class)
 public class UserServiceTest {
     @MockBean
-    IUserRepository userRepositoryMock;
+    UserRepository userRepositoryMock;
 
     @Autowired
     private UserService userService;

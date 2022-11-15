@@ -2,6 +2,7 @@ package com.solutions.shop.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -11,6 +12,7 @@ import java.util.Set;
 @Entity
 @Table(name = "shopping_cart")
 @AllArgsConstructor
+@Setter
 public class ShoppingCart {
     @Id
     @Column(name = "order_id")
@@ -36,12 +38,4 @@ public class ShoppingCart {
             inverseJoinColumns =
                     { @JoinColumn(name = "product_id", referencedColumnName = "product_id") })
     private Set<Product> products;
-
-    public void setConfirmed(Boolean confirmed) {
-        this.confirmed = confirmed;
-    }
-
-    public void setProducts(Set<Product> products) {
-        this.products = products;
-    }
 }

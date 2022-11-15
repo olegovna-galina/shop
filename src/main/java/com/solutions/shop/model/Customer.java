@@ -3,6 +3,7 @@ package com.solutions.shop.model;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.AllArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,6 +19,7 @@ import javax.validation.constraints.NotBlank;
 @Table(name = "customer")
 @RequiredArgsConstructor
 @AllArgsConstructor
+@Setter
 public class Customer {
     @Id
     @Column(name = "customer_id")
@@ -39,16 +41,4 @@ public class Customer {
     @Column(name = "address")
     @NotBlank
     private String address;
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
 }
