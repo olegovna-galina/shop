@@ -1,4 +1,4 @@
-package com.solutions.shop;
+package com.solutions.shop.repository;
 
 import com.solutions.shop.hibernateUtil.HibernateUtil;
 import com.solutions.shop.model.User;
@@ -32,9 +32,10 @@ public class HibernateUtilUserTest {
 
         session.beginTransaction();
 
-        User user = new User(99,"test-logon", "test-passw");
-        Integer id = (Integer) session.save(user);
+        Integer userId = 99;
+        User user = new User(userId,"test-logon", "test-passw");
 
+        Integer id = (Integer) session.save(user);
         session.getTransaction().commit();
 
         Assertions.assertTrue(id > 0);

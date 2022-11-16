@@ -1,16 +1,18 @@
 package com.solutions.shop.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 @Data
 @Entity
 @Table(name = "shopping_cart")
+@AllArgsConstructor
+@Setter
 public class ShoppingCart {
     @Id
     @Column(name = "order_id")
@@ -22,4 +24,18 @@ public class ShoppingCart {
 
     @Column(name = "confirmed")
     private Boolean confirmed;
+
+    /* The customer_id column is the foreign key to customer.customer_id */
+    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @JoinColumn(name = "customer_id", referencedColumnName = "customer_id", insertable=false, updatable=false)
+    private Customer customer;
+
+    /* Implementing With a Join Table in JPA */
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "order_product",
+            joinColumns =
+                    { @JoinColumn(name = "order_id", referencedColumnName = "order_id") },
+            inverseJoinColumns =
+                    { @JoinColumn(name = "product_id", referencedColumnName = "product_id") })
+    private Set<Product> products;
 }
