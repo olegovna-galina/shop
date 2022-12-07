@@ -1,6 +1,8 @@
-package com.solutions.shop.DAO;
+package com.solutions.shop.dao;
 
 import com.solutions.shop.model.Customer;
+import org.springframework.stereotype.Repository;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -9,6 +11,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class JpaCustomerDao implements Dao<Customer>{
     @PersistenceContext
     private EntityManager entityManager;
