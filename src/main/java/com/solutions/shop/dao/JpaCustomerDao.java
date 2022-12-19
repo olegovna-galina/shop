@@ -18,6 +18,7 @@ public class JpaCustomerDao implements Dao<Customer>{
 
     @Override
     public Optional<Customer> get(Integer id) {
+
         return Optional.ofNullable(entityManager.find(Customer.class, id));
     }
 

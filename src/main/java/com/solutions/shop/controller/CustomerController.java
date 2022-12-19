@@ -1,5 +1,6 @@
 package com.solutions.shop.controller;
 
+import com.solutions.shop.dto.CustomerDto;
 import com.solutions.shop.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,12 +14,12 @@ public class CustomerController {
     @Autowired
     private CustomerService customerService;
 
-    @PostMapping
-    public ResponseEntity<?> createCustomerInfo(@RequestBody Integer userId,
-                                                @RequestBody String firstName,
-                                                @RequestBody String lastName,
-                                                @RequestBody String address) {
-        customerService.addInfoForUser(userId, firstName, lastName, address);
+    @PostMapping("/customer")
+    public ResponseEntity<?> createCustomerInfo(@RequestBody CustomerDto customer) {
+        customerService.addInfoForUser(customer.getUserId(),
+                customer.getFirstName(),
+                customer.getLastName(),
+                customer.getAddress());
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
