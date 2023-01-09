@@ -9,36 +9,28 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.*;
 
 @Service
 public class CustomerService {
+
     @Autowired
     private JpaCustomerDao jpaCustomerDao;
 
     @Autowired
     private UserRepository iUserRepository;
-    /*
-        public Optional<Customer> getCustomer(Integer id) {
-            return jpaCustomerDao.get(id);
-        }
 
-        public List<Customer> getAllUsers() {
-            return jpaCustomerDao.getAll();
-        }
-
-        public void updateUser(Customer customer) {
-            jpaCustomerDao.update(customer);
-        }
-
-        public void deleteUser(Customer customer) {
-            jpaCustomerDao.delete(customer);
-        }
-    */
-
-    /* Add Information to the personal account. */
+    /**
+     *
+     * Add Information to the personal account.
+     *
+     * @param userId User ID
+     * @param firstName Customer first name
+     * @param lastName Customer last name
+     * @param address Customer address
+     * @return response ResultDTO
+     */
     @Transactional
-    public ResultDTO addInfoForUser(Integer userId, String firstName, String lastName, String address){
+    public ResultDTO addInfoForUser(Integer userId, String firstName, String lastName, String address) {
         User user = iUserRepository.getReferenceById(userId);
         Integer customerId = user.getUserId();
         Customer customer = new Customer(customerId, user, firstName, lastName, address);

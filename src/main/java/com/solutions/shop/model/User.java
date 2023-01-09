@@ -13,6 +13,7 @@ import lombok.*;
 @Getter
 @Setter
 public class User {
+
     @Id
     @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="users_seq")
     @SequenceGenerator(name="users_seq", sequenceName="seq_user", allocationSize=1)

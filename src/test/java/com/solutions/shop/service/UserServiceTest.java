@@ -1,5 +1,7 @@
 package com.solutions.shop.service;
 
+import com.solutions.shop.dto.UserDto;
+import com.solutions.shop.mapping.MappingUser;
 import com.solutions.shop.model.User;
 import com.solutions.shop.repository.UserRepository;
 import org.junit.jupiter.api.Test;
@@ -27,7 +29,10 @@ public class UserServiceTest {
 
         Mockito.when(userRepositoryMock.save(record)).thenReturn(record);
 
-        User user2 = userService.createUser(record);
+        MappingUser mapping = new MappingUser();
+        UserDto userDto = mapping.mapToUserDto(record);
+        userService.createUser(userDto);
+        User user2 = mapping.mapToUser(userDto);
 
         var result = user2.getLogin();
         assertEquals(record.getLogin(), result);

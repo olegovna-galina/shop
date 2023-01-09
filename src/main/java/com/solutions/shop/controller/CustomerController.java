@@ -1,7 +1,9 @@
 package com.solutions.shop.controller;
 
 import com.solutions.shop.dto.CustomerDto;
+import com.solutions.shop.dto.ResultDTO;
 import com.solutions.shop.service.CustomerService;
+import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,15 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class CustomerController {
+
     @Autowired
     private CustomerService customerService;
 
     @PostMapping("/customer")
-    public ResponseEntity<?> createCustomerInfo(@RequestBody CustomerDto customer) {
-        customerService.addInfoForUser(customer.getUserId(),
+    public ResponseEntity<String> createCustomerInfo(@RequestBody @NonNull CustomerDto customer) {
+        ResultDTO resultDTO = customerService.addInfoForUser(customer.getUserId(),
                 customer.getFirstName(),
                 customer.getLastName(),
                 customer.getAddress());
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        return new ResponseEntity<String>(resultDTO.getResponse(), HttpStatus.CREATED);
     }
 }

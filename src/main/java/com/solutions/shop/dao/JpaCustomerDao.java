@@ -12,13 +12,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class JpaCustomerDao implements Dao<Customer>{
+public class JpaCustomerDao implements Dao<Customer> {
     @PersistenceContext
     private EntityManager entityManager;
 
     @Override
     public Optional<Customer> get(Integer id) {
-
         return Optional.ofNullable(entityManager.find(Customer.class, id));
     }
 
