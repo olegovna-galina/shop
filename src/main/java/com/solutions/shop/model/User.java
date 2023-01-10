@@ -1,9 +1,6 @@
 package com.solutions.shop.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 import lombok.*;
@@ -16,8 +13,11 @@ import lombok.*;
 @Getter
 @Setter
 public class User {
+
     @Id
-    @Column(name = "user_id")
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="users_seq")
+    @SequenceGenerator(name="users_seq", sequenceName="seq_user", allocationSize=1)
+    @Column(name = "user_id", updatable = false, nullable = false)
     private Integer userId;
 
     @Column(name = "login")

@@ -18,7 +18,10 @@ import java.util.Set;
 @RequiredArgsConstructor
 @Setter
 public class Product {
+
     @Id
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="product_seq")
+    @SequenceGenerator(name="product_seq", sequenceName="seq_product", allocationSize=1)
     @Column(name = "product_id")
     @NonNull
     private Integer productId;
@@ -48,7 +51,11 @@ public class Product {
     @NonNull
     private String category;
 
-    /* Implementing With a Join Table in JPA */
+    /**
+     *
+     * Implementing With a Join Table in JPA.
+     *
+     */
     @ManyToMany(mappedBy = "products")
     private Set<ShoppingCart> shoppingCarts;
 }
