@@ -44,21 +44,20 @@ public class UserService {
 
     /**
      *
-     * Log In (find User with login and password)
+     * find User with login (for admin)
      *
      * @param login UserDto login
-     * @param password UserDto password
      * @return userDto UserDto
      */
     @Transactional
-    public UserDto findUser(String login, String password) {
+    public UserDto findUser(String login) {
         List<User> users = iUserRepository.findByLogin(login); //should find only 1 user
-        String passwordHash = users.get(0).getPassword();
-        if (passwordHash == encoder.encode(password)) {
+        if (users.isEmpty()) {
+            return null;
+        } else {
             MappingUser mapping = new MappingUser();
             UserDto userDto = mapping.mapToUserDto(users.get(0));
             return userDto;
         }
-        return null;
     }
 }

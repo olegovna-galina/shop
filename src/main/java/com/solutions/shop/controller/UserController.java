@@ -13,17 +13,16 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("user/{login},{password}")
+    @PostMapping("user/{login}/{password}")
     public ResponseEntity<?> create(@RequestBody UserDto userDto) {
         userService.createUser(userDto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @GetMapping("user/{login},{password}")
-    public ResponseEntity<UserDto> findUserByLogin(@PathVariable("login") String login,
-                                                   @PathVariable("password") String password) {
+    @GetMapping("user/{login}")
+    public ResponseEntity<UserDto> findUserByLogin(@PathVariable("login") String login) {
         return ResponseEntity
                 .status(HttpStatus.OK)
-                .body(userService.findUser(login, password));
+                .body(userService.findUser(login));
     }
 }

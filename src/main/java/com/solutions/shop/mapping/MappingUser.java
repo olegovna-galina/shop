@@ -9,7 +9,6 @@ public class MappingUser {
         UserDto dto = new UserDto();
         dto.setUserId(entity.getUserId());
         dto.setLogin(entity.getLogin());
-        dto.setPassword(entity.getPassword());
         return dto;
     }
 
