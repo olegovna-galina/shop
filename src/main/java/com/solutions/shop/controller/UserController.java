@@ -7,15 +7,17 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 
+import javax.validation.Valid;
+
 @RestController
 public class UserController {
 
     @Autowired
     private UserService userService;
 
-    @PostMapping("user/{login}/{password}")
-    public ResponseEntity<?> create(@RequestBody UserDto userDto) {
-        userService.createUser(userDto);
+    @PostMapping("user")
+    public ResponseEntity<?> create(@RequestBody @Valid UserDto user) {
+        userService.createUser(user);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
