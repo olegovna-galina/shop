@@ -1,9 +1,6 @@
 package com.solutions.shop.model;
 
-import lombok.Data;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import java.math.BigDecimal;
 
@@ -16,6 +13,7 @@ import java.util.Set;
 @Entity
 @Table(name = "product")
 @RequiredArgsConstructor
+@NoArgsConstructor
 @Setter
 public class Product {
 
